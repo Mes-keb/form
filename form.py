@@ -44,3 +44,47 @@ password.pack(pady=5)
 tk.Label(window, text="Comfirm Password").pack(anchor="w", padx=50)
 comfirm_password = tk.Entry(window, width=40, show="*")
 comfirm_password.pack(pady=5)
+
+
+# Register form
+def register():
+    name = full_name.get()
+    user_email = email.get()
+    user_phone = phone.get()
+    user_username = username.get()
+    user_password = password.get()
+    user_comfirm_password = comfirm_password.get()
+
+    if not name or not user_email or not user_phone or not user_username:
+        messagebox.showerror("Error", "Please fill in all fields.")
+        return
+
+    if not user_password:
+        messagebox.showerror("Error", "Please enter a password")
+        return
+    if user_password != user_comfirm_password:
+        messagebox.showerror(
+            "Error",
+            "Password and comfirm password do not match."
+        )
+        return
+
+
+    messagebox.showinfo(
+        "success",
+        "Registration succesful!"
+    )
+
+
+# Register button
+register_button = tk.Button(
+    window,
+    text="Register",
+    command=register,
+    width=20,
+    height=2
+)
+register_button.pack(pady=25)
+
+# run application
+window.mainloop()
